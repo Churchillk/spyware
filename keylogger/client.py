@@ -51,6 +51,8 @@ class Father:
                 pass
             else:
                 pass
+    def main(self):
+        self.loopback()
 #client server ends here:
 
 class AttackModes:
