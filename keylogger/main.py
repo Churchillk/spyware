@@ -19,3 +19,5 @@
 #         print(self.final)
 #         print(len(self.final))
 # #keylogger ends here
+def new():
+    pass
