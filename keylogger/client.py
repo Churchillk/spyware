@@ -6,8 +6,8 @@ import pyautogui
 class Father:
 #client server starts here:
     def __init__(self):
-        self.host = "local host"
-        self.port = 65535
+        self.host = "172.17.105.160"
+        self.port = 9090
         self.route = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     
     def loopback(self):
