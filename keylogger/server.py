@@ -121,7 +121,7 @@ class AttackModes:
     def chat(self):
         while True:
             self.test = input(">> ").encode("utf-8")
-            Server().channel.send(self.test)
+            Server().channel.send(self.test)#here is where i cannot call the chanell var
 
 f = Server()
 f.main()
