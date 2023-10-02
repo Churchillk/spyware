@@ -27,6 +27,12 @@ class Server:
             self.messaging()
         except socket.error as err:
             self.waiting()
+    
+    def main(self):
+        try:
+            self.binding()
+        except:
+            print("shit failled")
 #server code stops here
 
 #ATTACK MODES STARTS HERE...................................
@@ -95,3 +101,7 @@ class AttackModes:
     #get the exact locations
     def geolocate():
         pass
+
+
+f = Server()
+f.main()
