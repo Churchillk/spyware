@@ -23,46 +23,41 @@ class Client:
             self.route.close()
     
     def messaging(self):
-            self.data_from_blacksheep = self.route.recv(1024).decode("utf-8")
-            print(self.data_from_blacksheep)
-            if self.data_from_blacksheep == "1":
-                #screen recording goes here
-                print("SCREEN MODE ACTIVATED")
-                self.screen_record()
-                pass
-            if self.data_from_blacksheep == "2":
-                #keylogger codes goes here
-                print("KEYLOGGER MODE ACTIVATED")
-                self.keylogger()
-                pass
-            if self.data_from_blacksheep == "3":
-                #screen reverse shell goes here
-                print("REVERSE SHELL MODE ACTIVATED")
-                self.reverse_shell()
-                pass
-            if self.data_from_blacksheep == "4":
-                #crashing the entire systemclear
-                print("MALWARE MODE ACTIVATED")
+        self.data_from_blacksheep = self.route.recv(1024).decode("utf-8")
+        print(self.data_from_blacksheep)
+        if self.data_from_blacksheep == "1":
+            #screen recording goes here
+            print("SCREENSHARE MODE ACTIVATED")
+            self.screen_record()
+        if self.data_from_blacksheep == "2":
+            #keylogger codes goes here
+            print("KEYLOGGER MODE ACTIVATED")
+            self.keylogger()
+        if self.data_from_blacksheep == "3":
+            #screen reverse shell goes here
+            print("REVERSE SHELL MODE ACTIVATED")
+            self.reverse_shell()
+        if self.data_from_blacksheep == "4":
+            #crashing the entire systemclear
+            print("MALWARE MODE ACTIVATED")
 
-                self.crash_sys()
-                pass
-            if self.data_from_blacksheep == "5":
-                #take over cameras and audio
-                print("WEBCAM MODE ACTIVATED")
-                self.webcam()
-                pass
-            if self.data_from_blacksheep == "6":
-                #get the exact locations
-                print("GEOLOCATION MODE ACTIVATED")
-                self.geolocate()
-                pass
-            if self.data_from_blacksheep == "7":
-                print("CHAT MODE ACTIVATED")
-                #get the exact locations
-                self.chat()
-                pass
-            else:
-                print("no match found")
+            self.crash_sys()
+        if self.data_from_blacksheep == "5":
+            #take over cameras and audio
+            print("WEBCAM MODE ACTIVATED")
+            self.webcam()
+        if self.data_from_blacksheep == "6":
+            #get the exact locations
+            print("GEOLOCATION MODE ACTIVATED")
+            self.geolocate()
+        if self.data_from_blacksheep == "7":
+            print("CHAT MODE ACTIVATED")
+            #get the exact locations
+            self.chat()
+        if not self.data_from_blacksheep or self.data_from_blacksheep == "END":
+            print("no code executed")
+        else:
+            print("no match found")
 
     def main(self):
         self.connection_to_server()
@@ -70,28 +65,34 @@ class Client:
 
 
     #screen recording goes here
-    def screen_record():
-        pass
+    def screen_record(self):
+        print("more codes will go bellow")
+        self.route.close()
 
     #keylogger codes goes here 
-    def keylogger():
-        pass
+    def keylogger(self):
+        print("more codes will go bellow")
+        self.route.close()
 
     #screen reverse shell goes here
-    def reverse_shell():
-        pass
+    def reverse_shell(self):
+        print("more codes will go bellow")
+        self.route.close()
 
     #crashing the entire system
-    def crash_sys():
-        pass
+    def crash_sys(self):
+        print("more codes will go bellow")
+        self.route.close()
 
     #take over cameras and audio
-    def webcam():
-        pass
+    def webcam(self):
+        print("more codes will go bellow")
+        self.route.close()
 
     #get the exact locations
-    def geolocate():
-        pass
+    def geolocate(self):
+        print("more codes will go bellow")
+        self.route.close()
 
     def chat(self):
         while True:
