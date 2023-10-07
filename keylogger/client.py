@@ -84,8 +84,6 @@ class Client:
             print()
         except Exception as e:
             print(Fore.RED, Back.BLACK, f"Error: {e}")
-
-        print(Fore.GREEN, "Connection established: ")
         
     #screen reverse shell goes here
     def reverse_shell(self):
